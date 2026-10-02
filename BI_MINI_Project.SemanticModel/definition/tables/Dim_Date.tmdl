@@ -61,6 +61,17 @@ table Dim_Date
 
 		annotation SummarizationSetBy = Automatic
 
+	hierarchy 'Date Hierarchy'
+		lineageTag: 74f29e01-26b1-4a95-a683-175e6abb1d13
+
+		level MonthName
+			lineageTag: 0be091de-841d-40ed-bb3a-e8eb88a114c1
+			column: MonthName
+
+		level Date
+			lineageTag: 8d12a6ee-e7ee-4d04-9ad0-1105e8741272
+			column: Date
+
 	partition Dim_Date = m
 		mode: import
 		source =

@@ -1,0 +1,16 @@
+{
+    "name": "BrewMetrics Coffee",
+    "dataColors": [
+        "#6F4E37",
+        "#C8A27A",
+        "#D2691E",
+        "#3E2723",
+        "#8D6E63",
+        "#A1887F",
+        "#E0C9A6",
+        "#4E342E"
+    ],
+    "background": "#FFFFFF",
+    "foreground": "#3E2723",
+    "tableAccent": "#6F4E37"
+}
