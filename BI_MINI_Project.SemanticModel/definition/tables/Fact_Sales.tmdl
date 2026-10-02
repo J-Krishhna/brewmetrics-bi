@@ -69,6 +69,18 @@ table Fact_Sales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Cold Brew Sales' = ```
+			
+			CALCULATE(
+			    [Total Sales],
+			    Dim_Product[Item] = "Cold Brew"
+			)
+			
+			```
+		lineageTag: 78d1ffa3-1515-43e5-86f7-937ce9f64216
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column sale_id
 		dataType: int64
 		formatString: 0

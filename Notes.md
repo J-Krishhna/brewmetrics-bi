@@ -55,6 +55,7 @@ RANKX(
     ,
     DESC
 )
+**What was wrong / changed:** nothing
 
 ### AI Prompt
 Using the Power BI model in this workspace, write a DAX measure called Item Share of Category % that shows each item's sales as a percentage of its own category's total sales. Don't edit any files, just reply with the DAX.
@@ -91,3 +92,14 @@ RETURN
 What was changed: Replaced ALL(Dim_Product) with ALL(Dim_Product[Item])
 
 Why it works: ALL(Dim_Product[Item]) explicitly removes the filter context on the Item column while maintaining the filter on Category. Consequently, CategorySales calculates the sum of all sales within that specific category, allowing DIVIDE(ItemSales, CategorySales) to accurately reflect the item's percentage contribution to its category.
+
+### AI Prompt
+Using the Power BI model in this workspace, write a DAX measure called Cold Brew Sales that returns total sales for the Cold Brew item only. Check the exact item name in the data (brewmetrics_sales.csv, if it's in the workspace) before writing it. Don't edit any files, just reply with the DAX.
+
+### AI suggestion
+Cold Brew Sales = 
+CALCULATE(
+    [Total Sales],
+    Dim_Product[Item] = "Cold Brew"
+)
+**What was wrong / changed:** nothing
