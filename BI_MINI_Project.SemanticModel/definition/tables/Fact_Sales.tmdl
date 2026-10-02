@@ -59,7 +59,7 @@ table Fact_Sales
 			VAR CategorySales = 
 			    CALCULATE(
 			        [Total Sales],
-			        ALL(Dim_Product)
+			        ALL(Dim_Product[Item])
 			    )
 			RETURN
 			    DIVIDE(ItemSales, CategorySales)

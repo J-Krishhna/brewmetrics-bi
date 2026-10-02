@@ -74,3 +74,20 @@ RETURN
 Using ALL(Dim_Product) clears filters from all columns in the Dim_Product table, including both Item and Category.
 
 Because the filter on Category is removed along with Item, CategorySales evaluates the grand total sales across the entire product catalog rather than scoping the denominator to the item's specific category. This produces the item's share of total company sales instead of its share of its own category's sales.
+
+
+### Fix
+Item Share of Category % = 
+VAR ItemSales = [Total Sales]
+VAR CategorySales = 
+    CALCULATE(
+        [Total Sales],
+        ALL(Dim_Product[Item])
+    )
+RETURN
+    DIVIDE(ItemSales, CategorySales)
+
+### Explanation of the Fix
+What was changed: Replaced ALL(Dim_Product) with ALL(Dim_Product[Item])
+
+Why it works: ALL(Dim_Product[Item]) explicitly removes the filter context on the Item column while maintaining the filter on Category. Consequently, CategorySales calculates the sum of all sales within that specific category, allowing DIVIDE(ItemSales, CategorySales) to accurately reflect the item's percentage contribution to its category.
