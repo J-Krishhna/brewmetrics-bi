@@ -9,6 +9,7 @@
 ```DAX
 Total Sales = SUM(Fact_Sales[sales_amount])
 ```
+**What was wrong / changed:** Nothing
 
 ## Measure 2: MoM Growth %
 
@@ -27,4 +28,19 @@ VAR PreviousMonthSales =
 RETURN
     DIVIDE(CurrentMonthSales - PreviousMonthSales, PreviousMonthSales)
 ```
+**What was wrong / changed:** nothing
+
+### AI Prompt
+Using the Power BI model in this workspace, write a DAX measure called Running Total that accumulates [Total Sales] across the date table. Don't edit any files, just reply with the DAX.
+
+### AI Suggestion
+Running Total = 
+CALCULATE(
+    [Total Sales],
+    FILTER(
+        ALLSELECTED('Dim_Date'[Date]),
+        'Dim_Date'[Date] <= MAX('Dim_Date'[Date])
+    )
+)
+**What was wrong / changed:** nothing
 
