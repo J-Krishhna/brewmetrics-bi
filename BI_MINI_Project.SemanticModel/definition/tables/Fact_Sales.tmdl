@@ -1,0 +1,110 @@
+table Fact_Sales
+	lineageTag: 343d8574-37a9-4590-abe8-59045d9606b3
+
+	column sale_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 71c81a16-f97d-4eb5-ba71-cf2afa6a0153
+		summarizeBy: sum
+		sourceColumn: sale_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 22cbfb5f-de68-4419-b736-1124c368728a
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: a1d30654-f573-4581-ae4e-f8d7e4339339
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: int64
+		formatString: 0
+		lineageTag: 4eb6b11a-b3d9-44e3-affe-3bb59f716d53
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_amount
+		dataType: double
+		lineageTag: 31945d91-d81c-4cdc-b2c0-7954a4cbae3b
+		summarizeBy: sum
+		sourceColumn: sales_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CityID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cde46303-0b95-4a27-8dcd-5ea3742df6ac
+		summarizeBy: none
+		sourceColumn: CityID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreFormatID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 67f60714-d2bb-4618-a907-2c2bfe2bee3d
+		summarizeBy: none
+		sourceColumn: StoreFormatID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9bd42fb8-cb1a-46c8-9765-828463ed07ba
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Sales = m
+		mode: import
+		source =
+				let
+				    Source = Raw_Sales,
+				    #"Merged Queries" = Table.NestedJoin(Source, {"city"}, Dim_City, {"City"}, "Dim_City", JoinKind.LeftOuter),
+				    #"Expanded Dim_City" = Table.ExpandTableColumn(#"Merged Queries", "Dim_City", {"CityID"}, {"CityID"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded Dim_City", {"store_format"}, Dim_StoreFormat, {"StoreFormat"}, "Dim_StoreFormat", JoinKind.LeftOuter),
+				    #"Expanded Dim_StoreFormat" = Table.ExpandTableColumn(#"Merged Queries1", "Dim_StoreFormat", {"StoreFormatID"}, {"StoreFormatID"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded Dim_StoreFormat", {"category", "item"}, Dim_Product, {"Category", "Item"}, "Dim_Product", JoinKind.LeftOuter),
+				    #"Expanded Dim_Product" = Table.ExpandTableColumn(#"Merged Queries2", "Dim_Product", {"ProductID"}, {"ProductID"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Expanded Dim_Product",{"sale_id", "date", "quantity", "unit_price", "sales_amount", "CityID", "StoreFormatID", "ProductID"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"date", "Date"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

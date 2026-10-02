@@ -1,0 +1,38 @@
+table Dim_City
+	lineageTag: 9258fa66-b192-4211-8d7d-73894d1fcf50
+
+	column CityID
+		dataType: int64
+		formatString: 0
+		lineageTag: b9513477-bf67-4181-b2ad-26e03a0f1028
+		summarizeBy: none
+		sourceColumn: CityID
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 75794690-36a5-46ba-a030-6222472bc55f
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_City = m
+		mode: import
+		source =
+				let
+				    Source = Raw_Sales,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"city"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "CityID"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"CityID", "city"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns",{{"city", "City"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

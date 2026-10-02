@@ -1,0 +1,16 @@
+relationship AutoDetected_f70cc4d6-c76c-4223-8d31-91ca36de8e3b
+	fromColumn: Fact_Sales.CityID
+	toColumn: Dim_City.CityID
+
+relationship AutoDetected_d2a58122-0dba-4c3a-a0f5-f500d272aef7
+	fromColumn: Fact_Sales.StoreFormatID
+	toColumn: Dim_StoreFormat.StoreFormatID
+
+relationship AutoDetected_f9868e98-f905-4790-8b03-8cd693f4ed5b
+	fromColumn: Fact_Sales.ProductID
+	toColumn: Dim_Product.ProductID
+
+relationship ab9a2af9-a7c0-603e-7611-fc1744f54b07
+	fromColumn: Fact_Sales.Date
+	toColumn: Dim_Date.Date
+

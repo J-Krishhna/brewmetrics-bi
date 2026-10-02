@@ -1,0 +1,47 @@
+table Dim_Product
+	lineageTag: 6b72f8ba-8dda-4354-b773-aa122d7f4a36
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f9f0f20-de95-46c3-825c-2b6e5a85a05d
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 19abe13b-75ce-435d-aee5-3e73ce22cfd3
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 35909687-98e2-471d-a015-854deea58b64
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Product = m
+		mode: import
+		source =
+				let
+				    Source = Raw_Sales,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"sale_id", "category", "item"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Removed Other Columns",{"sale_id"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "ProductID"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"ProductID", "category", "item"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns",{{"category", "Category"}, {"item", "Item"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

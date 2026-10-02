@@ -1,0 +1,85 @@
+table Dim_Date
+	lineageTag: 118f398e-e094-4ded-884b-8bfefea6e179
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 8699bdf6-3d0f-4b65-8e18-eff3f5b1074f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d870498-8df4-41c5-ae3b-32bfda016465
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: a54cd836-1468-4a20-b6ce-44754f0b3f4c
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 1b3bce13-7d72-40d7-b06e-1a1260ddfb90
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNumber
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 809009ba-c7ce-47de-8b7c-e1c3f1835863
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d58d0a0-020a-4de7-9dc7-9391899eaa18
+		summarizeBy: none
+		sourceColumn: WeekNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = m
+		mode: import
+		source =
+				let
+				    StartDate  = List.Min(Raw_Sales[date]),
+				    EndDate    = List.Max(Raw_Sales[date]),
+				    DayCount   = Duration.Days(EndDate - StartDate) + 1,
+				    DateList   = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+				    ToTable    = Table.FromList(DateList, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+				    Typed      = Table.TransformColumnTypes(ToTable, {{"Date", type date}}),
+				    AddYear    = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+				    AddMonthNo = Table.AddColumn(AddYear, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    AddMonth   = Table.AddColumn(AddMonthNo, "MonthName", each Date.MonthName([Date]), type text),
+				    AddDay     = Table.AddColumn(AddMonth, "Day", each Date.Day([Date]), Int64.Type),
+				    AddWeek    = Table.AddColumn(AddDay, "WeekNumber", each Date.WeekOfYear([Date]), Int64.Type)
+				in
+				    AddWeek
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
