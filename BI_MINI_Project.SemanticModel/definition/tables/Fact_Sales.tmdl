@@ -40,6 +40,19 @@ table Fact_Sales
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'City Rank' = ```
+			
+			RANKX(
+			    ALL(Dim_City[City]),
+			    [Total Sales],
+			    ,
+			    DESC
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 856c0a25-f5c3-491c-a21e-347bdc5f36e5
+
 	column sale_id
 		dataType: int64
 		formatString: 0

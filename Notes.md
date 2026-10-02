@@ -44,3 +44,14 @@ CALCULATE(
 )
 **What was wrong / changed:** nothing
 
+### AI Prompt
+Using the Power BI model in this workspace, write a DAX measure called City Rank that ranks cities by [Total Sales] using RANKX, highest sales as rank 1. Don't edit any files, just reply with the DAX.
+
+### AI Suggestion
+City Rank = 
+RANKX(
+    ALL(Dim_City[City]),
+    [Total Sales],
+    ,
+    DESC
+)
