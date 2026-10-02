@@ -55,3 +55,22 @@ RANKX(
     ,
     DESC
 )
+
+### AI Prompt
+Using the Power BI model in this workspace, write a DAX measure called Item Share of Category % that shows each item's sales as a percentage of its own category's total sales. Don't edit any files, just reply with the DAX.
+
+### AI suggestion
+Item Share of Category % = 
+VAR ItemSales = [Total Sales]
+VAR CategorySales = 
+    CALCULATE(
+        [Total Sales],
+        ALL(Dim_Product)
+    )
+RETURN
+    DIVIDE(ItemSales, CategorySales)
+
+### Why It Is Incorrect
+Using ALL(Dim_Product) clears filters from all columns in the Dim_Product table, including both Item and Category.
+
+Because the filter on Category is removed along with Item, CategorySales evaluates the grand total sales across the entire product catalog rather than scoping the denominator to the item's specific category. This produces the item's share of total company sales instead of its share of its own category's sales.
