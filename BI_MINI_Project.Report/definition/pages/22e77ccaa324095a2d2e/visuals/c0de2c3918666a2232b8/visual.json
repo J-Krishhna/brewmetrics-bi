@@ -4,10 +4,10 @@
   "position": {
     "x": 57.633126183018142,
     "y": 708.06412167708,
-    "z": 5,
+    "z": 4000,
     "height": 325.21549774703095,
     "width": 1634.3107924755859,
-    "tabOrder": 5
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -133,8 +133,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#42121F'"
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
                     }
                   }
                 }
@@ -179,6 +180,43 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_Product"
+                          }
+                        },
+                        "Property": "Item"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Cold Brew'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       ],

@@ -4,10 +4,10 @@
   "position": {
     "x": 39.108192767048024,
     "y": 290.22395685019848,
-    "z": 6,
+    "z": 5000,
     "height": 366.38201644918672,
-    "width": 786.28050721117609,
-    "tabOrder": 6
+    "width": 559.864654349319,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -77,6 +77,55 @@
         }
       }
     },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "visualContainerObjects": {
       "background": [
         {
@@ -134,7 +183,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f94f8eacc7d60a1d90de",
+        "name": "9c284ec83c856e1beb0d",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -153,7 +202,7 @@
         "type": "Categorical"
       },
       {
-        "name": "669cc93ad0c0c0a4637b",
+        "name": "8d8976c1adab486b3834",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -172,7 +221,7 @@
         "type": "Categorical"
       },
       {
-        "name": "ba2bf5c01a9070b50d3a",
+        "name": "fc5f363457fa7cb4a4d8",
         "field": {
           "Measure": {
             "Expression": {

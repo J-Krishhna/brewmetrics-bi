@@ -65,9 +65,8 @@ table Fact_Sales
 			    DIVIDE(ItemSales, CategorySales)
 			
 			```
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: b49014dd-42e0-4d7a-9fc5-b73bc21129eb
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Cold Brew Sales' = ```
 			

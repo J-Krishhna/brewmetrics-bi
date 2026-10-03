@@ -4,10 +4,10 @@
   "position": {
     "x": 20.583259351077906,
     "y": 734.8223588334813,
-    "z": 6002,
+    "z": 8000,
     "height": 255.23241595336606,
     "width": 518.69813564716321,
-    "tabOrder": 6002
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "tableEx",
@@ -133,6 +133,13 @@
                   "Value": "'Monthly Scorecard'"
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -160,7 +167,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "bad6e552e5892c9557ed",
+        "name": "b35c559d977a8110035f",
         "field": {
           "Column": {
             "Expression": {
@@ -174,7 +181,7 @@
         "type": "Categorical"
       },
       {
-        "name": "f10112dc2e16035ea75b",
+        "name": "8d8b34d1ced9457e0e38",
         "field": {
           "Measure": {
             "Expression": {
@@ -188,7 +195,7 @@
         "type": "Advanced"
       },
       {
-        "name": "fefe0fc4a761033153d1",
+        "name": "d827b4acc198c283291b",
         "field": {
           "Measure": {
             "Expression": {
@@ -202,7 +209,7 @@
         "type": "Advanced"
       },
       {
-        "name": "7a4c1850dc40524e0ea2",
+        "name": "25527bcefb7c184b8b81",
         "field": {
           "Measure": {
             "Expression": {

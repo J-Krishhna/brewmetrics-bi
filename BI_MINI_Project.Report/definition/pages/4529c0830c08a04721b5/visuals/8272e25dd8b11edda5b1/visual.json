@@ -1,19 +1,19 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
-  "name": "5016be7c7a00caa525a0",
+  "name": "8272e25dd8b11edda5b1",
   "position": {
-    "x": 621.61443240255278,
-    "y": 290.22395685019848,
-    "z": 6000,
-    "height": 366.38201644918672,
-    "width": 636.02271394830734,
-    "tabOrder": 6000
+    "x": 642.19769175363069,
+    "y": 734.8223588334813,
+    "z": 9000,
+    "height": 255.23241595336606,
+    "width": 518.69813564716321,
+    "tabOrder": 9000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -27,13 +27,8 @@
                 }
               },
               "queryRef": "Dim_City.City",
-              "nativeQueryRef": "City",
-              "active": true
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+              "nativeQueryRef": "City"
+            },
             {
               "field": {
                 "Measure": {
@@ -42,11 +37,25 @@
                       "Entity": "Fact_Sales"
                     }
                   },
-                  "Property": "Cold Brew Sales"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Fact_Sales.Cold Brew Sales",
-              "nativeQueryRef": "Cold Brew Sales"
+              "queryRef": "Fact_Sales.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "City Rank"
+                }
+              },
+              "queryRef": "Fact_Sales.City Rank",
+              "nativeQueryRef": "City Rank"
             }
           ]
         }
@@ -61,76 +70,99 @@
                     "Entity": "Fact_Sales"
                   }
                 },
-                "Property": "Cold Brew Sales"
+                "Property": "Total Sales"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": true
+        ]
       }
     },
     "objects": {
-      "valueAxis": [
+      "values": [
         {
           "properties": {
-            "gridlineShow": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "13D"
                 }
               }
             }
           }
         }
       ],
-      "categoryAxis": [
+      "total": [
         {
           "properties": {
-            "fontSize": {
+            "totals": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
           }
         }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "151.2831835424332D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_Sales.Total Sales"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.2163303499585D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_Sales.City Rank"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "123.64158798514484D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Dim_City.City"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
-      "background": [
+      "stylePreset": [
         {
           "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#EFE1CE'"
-                    }
-                  }
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BoldHeader'"
                 }
               }
             }
@@ -140,30 +172,41 @@
       "title": [
         {
           "properties": {
-            "text": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cold Brew Sales by City'"
+                  "Value": "true"
                 }
               }
             },
-            "fontSize": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "26D"
+                  "Value": "'City Ranking by Total Sales'"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
           }
         }
       ],
-      "subTitle": [
+      "background": [
         {
           "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E8DED4'"
+                    }
+                  }
                 }
               }
             }
@@ -176,7 +219,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "7afa89849bd8b8088778",
+        "name": "e514d7692fba82acc0b3",
         "field": {
           "Column": {
             "Expression": {
@@ -190,7 +233,7 @@
         "type": "Categorical"
       },
       {
-        "name": "56f902b801b1522a4c5e",
+        "name": "cd432429402308dc06f4",
         "field": {
           "Measure": {
             "Expression": {
@@ -198,7 +241,21 @@
                 "Entity": "Fact_Sales"
               }
             },
-            "Property": "Cold Brew Sales"
+            "Property": "Total Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e3008a255e0052c941a9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Sales"
+              }
+            },
+            "Property": "City Rank"
           }
         },
         "type": "Advanced"

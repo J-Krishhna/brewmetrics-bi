@@ -294,51 +294,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3f92c1746c2049018600",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Dim_City"
-              }
-            },
-            "Property": "City"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "10cab2875136c0b77a08",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Sales"
-              }
-            },
-            "Property": "Total Sales"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ce93151d97270b00709b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Sales"
-              }
-            },
-            "Property": "City Rank"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

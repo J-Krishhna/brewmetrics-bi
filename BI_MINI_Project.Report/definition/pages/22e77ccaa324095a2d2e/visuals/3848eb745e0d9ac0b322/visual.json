@@ -4,10 +4,10 @@
   "position": {
     "x": 39.108192767048024,
     "y": 111.14960049582069,
-    "z": 3,
+    "z": 2000,
     "height": 150.25779326286872,
     "width": 347.85708303321661,
-    "tabOrder": 3
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -155,23 +155,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e6a0c93c3a02c8da355d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Sales"
-              }
-            },
-            "Property": "Cold Brew Sales"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
