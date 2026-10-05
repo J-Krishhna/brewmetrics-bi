@@ -27,6 +27,7 @@ The model is a star schema: one fact table and four dimension tables. Each relat
                                    |
                               Fact_Sales
 ```
+![Schema page](images/STAR_SCHEMA.png)
 
 ### Fact table
 
